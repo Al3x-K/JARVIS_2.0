@@ -16,7 +16,7 @@ def chooseVoice(voice):
     if voice == 2:
         engine.setProperty('voice', voices[-2].id) # set the female voice
 
-    speak ("hello, how can i help you") # call the function and pass the text to it
+    #speak ("hello, how can i help you") # call the function and pass the text to it
 
 def getCurrentTime():
     Time = datetime.datetime.now().strftime("%I:%M:%S") # get the time
@@ -32,10 +32,30 @@ def getCurrentDate():
     speak(month)
     speak(year)
 
-while True:
-    voice = int(input("Press 1 for male voice\nPress 2 for female voice\n")) # input the text
-    #speak(audio) # call the function and pass the text to it
-    chooseVoice(voice) # call the function
+def welcomeBack():
+    greeting()
     getCurrentTime()
     getCurrentDate()
-    
+    speak("How can i help you?")
+
+def greeting():
+    hour = datetime.datetime.now().hour # get the hour
+    if hour >= 6 and hour < 12:
+        speak("Good Morning!")
+    elif hour >= 12 and hour < 18:
+        speak("Good Afternoon!")
+    elif hour >= 18 and hour < 24:
+        speak("Good Evening!")
+    else:
+        speak("Good Night!")
+
+# main function
+#while True:
+ #   voice = int(input("Press 1 for male voice\nPress 2 for female voice\n")) # input the text
+    #speak(audio) # call the function and pass the text to it
+  #  chooseVoice(voice) # call the function
+   # getCurrentTime()
+    #getCurrentDate()
+voice = int(input("Press 1 for male voice\nPress 2 for female voice\n"))
+chooseVoice(voice)
+welcomeBack() # call the function
