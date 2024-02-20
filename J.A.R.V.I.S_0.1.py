@@ -56,6 +56,18 @@ def greeting():
   #  chooseVoice(voice) # call the function
    # getCurrentTime()
     #getCurrentDate()
-voice = int(input("Press 1 for male voice\nPress 2 for female voice\n"))
-chooseVoice(voice)
-welcomeBack() # call the function
+        
+
+def takeCommandCMD(): 
+    query = input("Please tell me how can i help you: \n") # input the text
+    return query # return the text
+
+
+if __name__ == "__main__":
+    welcomeBack()
+    while True:
+        query = takeCommandCMD().lower() # input the text and convert it to lower case
+        if "time" in query:
+            getCurrentTime()
+        elif "date" in query:
+            getCurrentDate()
