@@ -1,5 +1,7 @@
 import pyttsx3 # pip install pyttsx3 == text data to speech
 import datetime # pip install datetime == date and time
+import speech_recognition as sr # pip install speechRecognition == speech recognition
+
 engine = pyttsx3.init() # initialize the engine
 
 
@@ -62,11 +64,26 @@ def takeCommandCMD():
     query = input("Please tell me how can i help you: \n") # input the text
     return query # return the text
 
+def takeCommandMic():
+    r = sr.Recognizer() # recognize the speech
+    with sr.Microphone() as source: # get the microphone
+        print("Listening...") 
+        r.pause_threshold = 1 # pause the threshold
+        audio = r.listen(source) # listen to the audio
+    try: 
+        print("Recognizing...") 
+        query = r.recognize_google(audio, language='en-in') # recognize the audio
+        print(f"User said: {query}\n") # print the audio
+    except Exception as e: 
+        print("Say that again please...") 
+        return "None" 
+    return query # return the audio
+
 
 if __name__ == "__main__":
     welcomeBack()
     while True:
-        query = takeCommandCMD().lower() # input the text and convert it to lower case
+        query = takeCommandMic().lower() # input the text and convert it to lower case
         if "time" in query:
             getCurrentTime()
         elif "date" in query:
